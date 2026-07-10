@@ -34,7 +34,7 @@ const SummaryCards = ({
             <span className="rtl:rotate-y-180">
               <IoArrowRedoSharp />
             </span>
-            <span dir="ltr">{percentageChange}%</span>
+            <span dir="ltr">{percentageChange || 0}%</span>
           </span>
         </>
       )}

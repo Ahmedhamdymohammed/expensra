@@ -3,7 +3,7 @@ import { MdOutlineSavings } from "../../assets/icons/icons";
 import { useModal } from "../../context";
 
 const AddToSavingsOption = () => {
-  const {openModal} = useModal()
+  const { openModal } = useModal();
 
   return (
     <OptionCard

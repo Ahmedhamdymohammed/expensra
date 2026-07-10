@@ -11,6 +11,8 @@ const SummaryCards = () => {
     totalIncomes,
     totalExpenses,
     totalBalance,
+    incomeChange,
+    expenseChange,
     balanceChange,
     isPending,
   } = useMonthlySummary();
@@ -28,7 +30,7 @@ const SummaryCards = () => {
         variant="income"
         i18nKey="income.totalIncome"
         amount={totalIncomes}
-        percentageChange={balanceChange}
+        percentageChange={incomeChange}
         isPending={isPending}
       >
         <FaArrowTrendDown />
@@ -37,7 +39,7 @@ const SummaryCards = () => {
         variant="expense"
         i18nKey="expenses.totalExpenses"
         amount={totalExpenses}
-        percentageChange={balanceChange}
+        percentageChange={expenseChange}
         isPending={isPending}
       >
         <FaArrowTrendUp />

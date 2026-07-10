@@ -1,5 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import { Text } from "../../common";
+import { Text } from "../common";
 
 const currentMonth = new Date().getMonth() + 1;
 const previousMonth = currentMonth - 1;

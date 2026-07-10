@@ -1,47 +1,35 @@
 import { useMemo } from "react";
-import { useAllCategories, useGetAllTransactions } from "../index";
-import { normalizeTransactions } from "../../utils";
-
-export const useCategoryPieData = () => {
-    const { data: allCategories, isPending } = useAllCategories();
-    const normalizeData = normalizeTransactions(allCategories);
-
-    const data = useMemo(() => {
-        return (normalizeData?.categories ?? [])
-            .filter((cat) => cat.user_id && cat.type === "expense")
-            .map((category) => ({
-                name: category.name,
-                total: (category.transactions || []).reduce(
-                    (sum, t) => sum + Number(t.amount || 0),
-                    0
-                ),
-            })).filter((category) => category.total > 0);
-    }, [normalizeData]);
-
-    return { data, isPending };
-};
-
+import { useSearchParams } from "react-router-dom";
+import { useGetMonthlyTransactions } from "../index";
+import { normalizeData } from "../../utils";
 
 export const useTrendsData = () => {
-    const { data, isPending } = useGetAllTransactions();
+  const currentMonth = new Date().getMonth() + 1;
+  const [searchParams] = useSearchParams();
 
-    const trendsData = useMemo(() => {
-        const transactions = normalizeTransactions(data)
+  const month = Number(searchParams.get("month")) || currentMonth;
+  const { data, isPending } = useGetMonthlyTransactions({ month: month });
+  const transactions = normalizeData(data);
 
-        const map = {};
+  const trendsData = useMemo(() => {
+    const expenseTransactions = transactions?.filter((t) => {
+      return t.transaction_type === "expense";
+    });
 
-        transactions.forEach((t) => {
-            const date = t.transaction_date;
-            map[date] = (map[date] || 0) + Number(t.amount || 0);
-        });
+    const map = {};
 
-        return Object.entries(map)
-            .sort(([a], [b]) => new Date(a) - new Date(b))
-            .map(([date, amount]) => ({
-                date,
-                amount,
-            }));
-    }, [data]);
+    expenseTransactions?.forEach((t) => {
+      const date = t.transaction_date;
+      map[date] = (map[date] || 0) + Number(t.amount || 0);
+    });
 
-    return { trendsData, isPending };
+    return Object.entries(map)
+      .sort(([a], [b]) => new Date(a).getTime() - new Date(b).getTime())
+      .map(([date, amount]) => ({
+        date,
+        amount,
+      }));
+  }, [transactions]);
+
+  return { trendsData, isPending };
 };

@@ -16,13 +16,13 @@ export default function UserProfile() {
   const navigate = useNavigate();
 
   return (
-    <div ref={ref} className="relative">
+    <div ref={ref} className="flex-center relative">
       <button onClick={() => setOpen(!open)}>
         <Avatar image={profile_image} />
       </button>
 
       {open && (
-        <div className="border-default border-default bg-primary absolute z-10 mt-5 w-50 rounded-md shadow-2xl ltr:right-0 rtl:left-0">
+        <div className="border-default border-default bg-primary absolute top-16 z-10 w-50 rounded-md shadow-2xl ltr:right-0 rtl:left-0">
           <div className="border-bottom px-4 py-3 text-left text-sm">
             <Text
               tagElement="h6"

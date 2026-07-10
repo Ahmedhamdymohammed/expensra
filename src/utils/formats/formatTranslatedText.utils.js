@@ -8,7 +8,7 @@ export const formatTranslatedText = (
     return "-";
   }
 
-  const key = `${translationKey}.${value.toLowerCase()}`;
+  const key = `${translationKey}.${value}`;
 
   return i18n.exists(key)
     ? t(key)

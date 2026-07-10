@@ -2,20 +2,12 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 
-import {
-  DEFAULT_BUDGET_VALUES,
-  formatDate,
-  showToast,
-} from "../../utils";
+import { DEFAULT_BUDGET_VALUES, formatDate, showToast } from "../../utils";
 
-import {
-  useAddBudget,
-  useEditBudget,
-  useGetBudget,
-} from "./budgets.hooks";
+import { useAddBudget, useEditBudget, useGetBudget } from "./budgets.hooks";
 import { useTranslation } from "react-i18next";
 
-export const useAddBudgetForm = () => {
+export const useBudgetForm = () => {
   const { t } = useTranslation();
   const form = useForm({ defaultValues: DEFAULT_BUDGET_VALUES });
   const { reset, handleSubmit } = form;
@@ -49,6 +41,11 @@ export const useAddBudgetForm = () => {
       start_date: formatDate(formData.start_date),
       end_date: formatDate(formData.end_date),
     };
+    const editData = {
+      category_name: formData.category_name,
+      limit_amount: formData.limit_amount,
+      end_date: formatDate(formData.end_date),
+    };
 
     if (!isEdit) {
       addBudget(formattedData, {
@@ -61,14 +58,15 @@ export const useAddBudgetForm = () => {
       });
     } else {
       editBudget(
-        { id: Number(budgetId), data: formattedData },
+        { id: Number(budgetId), data: editData },
         {
           onSuccess: () => {
             showToast("budget.updateSuccess", "success", t);
           },
           onError: (err) => {
             showToast("budget.updateError", "error", t);
-            console.log(err)
+            console.log(editData);
+            console.log(err);
           },
         },
       );

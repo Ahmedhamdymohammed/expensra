@@ -14,6 +14,7 @@ const DatePickerInput = ({
   value,
   onChange,
   error,
+  ...props
 }) => {
   const { i18n } = useTranslation();
   const locale = i18n.language === "ar" ? arSA : undefined;
@@ -32,6 +33,7 @@ const DatePickerInput = ({
         value={formattedValue}
         onClick={() => setOpen((prev) => !prev)}
         error={error}
+        {...props}
       >
         <MdOutlineCalendarMonth />
       </Input>

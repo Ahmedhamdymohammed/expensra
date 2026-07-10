@@ -5,7 +5,6 @@ import {
   PageHeader,
   Pricing,
   Section,
-  Text,
   TransactionsTable,
 } from "../components/common";
 import { useGetBudgets, useGetCurrentUser } from "../hooks";

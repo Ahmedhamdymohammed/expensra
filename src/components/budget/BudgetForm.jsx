@@ -7,12 +7,12 @@ import {
   FormButton,
   Text,
 } from "../common";
-import { useAddBudgetForm } from "../../hooks";
-import { MdAttachMoney, MdOutlineCategory  } from "../../assets/icons/icons";
+import { useBudgetForm } from "../../hooks";
+import { MdAttachMoney, MdOutlineCategory } from "../../assets/icons/icons";
 
 const BudgetForm = () => {
   const { form, isAdding, isEditing, isEdit, onCancel, onSubmit } =
-    useAddBudgetForm();
+    useBudgetForm();
   const {
     control,
     register,
@@ -36,9 +36,8 @@ const BudgetForm = () => {
               i18nKey="budget.categoryName"
               placeholderKey="categories.categoryPlaceholder"
               error={errors?.category_name}
-              // className="flex-2"
             >
-              <MdOutlineCategory  />
+              <MdOutlineCategory />
             </Input>
             <Input
               id="limit_amount"
@@ -50,7 +49,6 @@ const BudgetForm = () => {
                 required: "auth.requiredField",
                 min: { value: 1, message: "expenses.amountMin" },
               }}
-              // className="flex-2"
             >
               <MdAttachMoney />
             </Input>
@@ -64,6 +62,7 @@ const BudgetForm = () => {
                 <DatePickerInput
                   i18nKey="dates.startDate"
                   placeholderKey="startDatePlaceholder"
+                  disabled={isEdit}
                   value={field.value}
                   onChange={field.onChange}
                   disableNavigation={false}

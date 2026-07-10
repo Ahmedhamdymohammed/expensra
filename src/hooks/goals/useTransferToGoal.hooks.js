@@ -1,8 +1,11 @@
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "react-router-dom";
 import { useRemainingBalance } from "./useRemainingBalance.hooks";
+import { showToast } from "../../utils";
+import { useTranslation } from "react-i18next";
 
 export const useTransferToGoal = (handleOpenDialog) => {
+  const { t } = useTranslation()
   const [searchParams, setSearchParams] = useSearchParams();
   const goalId = searchParams.get("goalId");
 
@@ -21,12 +24,18 @@ export const useTransferToGoal = (handleOpenDialog) => {
   };
   const onSubmit = (data) => {
     const formattedData = {
-      //   ...data,
       amount: data.amount,
       action: "to_goal",
       goal_id: Number(goalId),
     };
-    mutate(formattedData);
+    mutate(formattedData, {
+      onSuccess: () => {
+        showToast("goals.carryOverSuccess", "success", t);
+      },
+      onError: () => {
+        showToast("goals.goalCarryOverFailed", "error", t);
+      },
+    });
     close();
   };
 

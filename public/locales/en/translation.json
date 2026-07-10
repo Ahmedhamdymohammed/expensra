@@ -163,6 +163,9 @@
     "totalExpenses": "Total Expenses",
     "addExpense": "Add Expense",
     "addNewExpense": "Add New Expense",
+    "addExpenseSuccess": "Expense added successfully.",
+    "updateExpenseSuccess": "Expense updated successfully.",
+    "deleteExpenseSuccess": "Expense deleted successfully.",
     "editExpense": "Edit Expense",
     "spending": "Spending",
     "spendingTrends": "Spending Trends",
@@ -179,6 +182,9 @@
     "monthlyIncome": "Monthly Income",
     "addIncome": "Add Income",
     "addNewIncome": "Add New Income",
+    "addIncomeSuccess": "Income added successfully.",
+    "updateIncomeSuccess": "Income updated successfully.",
+    "deleteIncomeSuccess": "Income deleted successfully.",
     "editIncome": "Edit Income",
     "allIncomeRecords": "All Income Records",
     "incomeTrends": "Income Trends",
@@ -241,7 +247,8 @@
     "carryOver": "Carry Over",
     "carryOverConfirmation": "Are you sure you want to carry over your remaining balance to next month?",
     "carryOverSuccess": "Remaining balance carried over successfully.",
-    "carryOverFailed": "You can carry over your remaining balance only after the current month ends.",
+    "balanceCarryOverFailed": "You can carry over your remaining balance only at the beginning of the new month.",
+    "goalCarryOverFailed": "You can carry over your remaining balance to your goal only at the beginning of the new month.",
     "moneyAdded": "{{amount}} added successfully",
     "goalDepositSuccess": "Added {{amount}} to your goal successfully",
     "moneyAddFailed": "Failed to add money. Please try again.",
@@ -319,7 +326,7 @@
     "netflix": "Netflix",
     "fuel": "Fuel",
     "other": "Other",
-    "goal deposit": "Goals"
+    "Goal Deposit": "Goals"
   },
   "pricing": {
     "title": "Choose Your Plan",

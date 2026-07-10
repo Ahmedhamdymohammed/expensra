@@ -4,7 +4,7 @@ import {
   FinancialInsights,
   SavingsLineChart,
 } from "../components/analytics";
-import { Loading, PageHeader, Section, Text } from "../components/common";
+import { Loading, PageHeader, Section } from "../components/common";
 import { useGetSummaryAnalytics, useSummaryStatistics } from "../hooks";
 
 const Analytics = () => {

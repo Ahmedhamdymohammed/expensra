@@ -7,12 +7,19 @@ import {
   useAddTransaction,
   useEditTransaction,
   useGetTransaction,
-} from "./transactions.hooks";
-import { formatDate, showToast, TRANSACTION_FORM_DEFAULTS } from "../../utils";
-import { useModal } from "../../context";
+  useGetBudgets,
+} from "../index";
+import {
+  checkBudgetWarning,
+  formatDate,
+  showToast,
+  TRANSACTION_FORM_DEFAULTS,
+} from "../../utils";
 
 export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
+  const { data: budgets } = useGetBudgets();
   const [searchParams, setSearchParams] = useSearchParams();
+  const type = searchParams.get("type");
   const transactionId = searchParams.get("transactionId");
   const isEdit = !!transactionId;
 
@@ -25,7 +32,6 @@ export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
   const { data: getTransaction } = useGetTransaction(transactionId, {
     enabled: isEdit,
   });
-  const { openModal } = useModal();
 
   const form = useForm({
     defaultValues: {
@@ -37,7 +43,11 @@ export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
   const { reset } = form;
 
   const onCancel = () => {
-    setSearchParams({});
+    if (type) {
+      setSearchParams({ type });
+    } else {
+      setSearchParams({});
+    }
     handleOpenDialog(false);
     queryClient.removeQueries({
       queryKey: ["transaction", transactionId],
@@ -52,9 +62,8 @@ export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
     const formattedDate = formatDate(transaction.transaction_date);
     const newData = {
       ...transaction,
-      force_save: false,
-      transaction_type: variant,
-      transaction_date: transaction.transaction_date ? formattedDate : "",
+      force_save: true,
+      transaction_date: formattedDate,
     };
 
     if (isEdit) {
@@ -62,20 +71,23 @@ export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
         { id: transactionId, data: newData },
         {
           onSuccess: () => {
-            showToast("transactions.editTransactionSuccess", "success", t);
+            variant === "expense"
+              ? showToast("expenses.updateExpenseSuccess", "success", t)
+              : showToast("income.updateIncomeSuccess", "success", t);
           },
           onSettled: onCancel,
         },
       );
     } else {
       addTransaction(newData, {
-        onSuccess: (res) => {
-          console.log(res);
-          if (res.status === "budget_warning") {
-            openModal('budgetWarning')
+        onSuccess: () => {
+          const isWarning = checkBudgetWarning(budgets, newData);
+          if (isWarning) {
             showToast("budget.budgetWarning", "warning", t);
           } else {
-            showToast("transactions.addTransactionSuccess", "success", t);
+            variant === "expense"
+              ? showToast("expenses.addExpenseSuccess", "success", t)
+              : showToast("income.addIncomeSuccess", "success", t);
           }
           reset();
           onCancel();
@@ -95,9 +107,7 @@ export const useTransactionForm = (variant = "expense", handleOpenDialog) => {
       category: getTransaction.category.name,
       amount: getTransaction.amount,
       notes: getTransaction.notes,
-      transaction_date: getTransaction.transaction_date
-        ? new Date(getTransaction.transaction_date)
-        : null,
+      transaction_date: getTransaction.transaction_date,
     });
   }, [getTransaction, isEdit, reset]);
 

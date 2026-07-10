@@ -6,10 +6,9 @@ export const requestOTP = async (data) => {
 };
 
 export const updateUserProfile = async (data) => {
-    const response = await api.put("/api/profile/update", data);
+    const response = await api.post("/api/profile/update", data);
     return response.data;
 };
-
 
 export const resetUserPassword = async (data) => {
     const response = await api.post("/api/reset-password", data);

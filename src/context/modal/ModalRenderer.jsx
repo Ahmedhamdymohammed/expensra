@@ -1,4 +1,4 @@
-import { BudgetForm, BudgetWarningDialog } from "../../components/budget";
+import { BudgetForm } from "../../components/budget";
 import { ConfirmDialog, TransactionsForm } from "../../components/common";
 import {
   DepositForm,
@@ -44,14 +44,6 @@ const ModalRenderer = () => {
     case "addBudget":
       return (
         <BudgetForm
-          openDialog={true}
-          handleOpenDialog={closeModal}
-          {...modal.props}
-        />
-      );
-    case "budgetWarning":
-      return (
-        <BudgetWarningDialog
           openDialog={true}
           handleOpenDialog={closeModal}
           {...modal.props}
