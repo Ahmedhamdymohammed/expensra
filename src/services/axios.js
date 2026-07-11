@@ -1,14 +1,17 @@
 import axios from "axios";
 
+console.log("API URL:", import.meta.env.VITE_API_URL);
+
 const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,
+  headers: {
+    "Content-Type": "application/json",
+  },
 });
 
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
-
-    config.headers = config.headers || {};
 
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -16,7 +19,7 @@ api.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error),
+  (error) => Promise.reject(error)
 );
 
 api.interceptors.response.use(
@@ -32,15 +35,12 @@ api.interceptors.response.use(
         error.response.data?.message ||
         error.response.data?.error ||
         "Request failed";
-
-      return Promise.reject(error);
-    }
-
-    if (error.request) {
-      return Promise.reject(new Error("Network error, please try again"));
+    } else if (error.request) {
+      error.message = "Network error, please try again";
     }
 
     return Promise.reject(error);
-  },
+  }
 );
+
 export default api;
