@@ -1,9 +1,9 @@
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { FormButton, Input, Section, Text } from "../components/common";
 import { MdOutlineMailLock } from "../assets/icons/icons";
 import { useResendOTP, useVerifyUser } from "../hooks";
-import { useNavigate } from "react-router-dom";
-import { useTranslation } from "react-i18next";
 import { showToast } from "../utils";
 
 const OTP = () => {

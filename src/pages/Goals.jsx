@@ -3,7 +3,6 @@ import {
   Loading,
   PageHeader,
   Section,
-  Text,
   TransactionsTable,
 } from "../components/common";
 import { useGetGoals } from "../hooks";

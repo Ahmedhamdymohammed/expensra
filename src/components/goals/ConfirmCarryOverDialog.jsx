@@ -14,7 +14,7 @@ const ConfirmCarryOverDialog = ({ handleOpenDialog }) => {
     mutate(data, {
       onSuccess: (response) => {
         response.message.error
-          ? showToast("goals.carryOverFailed", "error", t)
+          ? showToast("goals.balanceCarryOverFailed", "error", t)
           : showToast("goals.carryOverSuccess", "success", t);
       },
       onSettled: () => handleOpenDialog(false),

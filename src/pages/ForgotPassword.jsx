@@ -1,7 +1,7 @@
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { EmailInput, FormButton, Section, Text } from "../components/common";
-import { BsExclamationOctagon, FaExclamation } from "../assets/icons/icons";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
+import { BsExclamationOctagon } from "../assets/icons/icons";
 import { useForgotPassword } from "../hooks";
 
 const ForgotPassword = () => {

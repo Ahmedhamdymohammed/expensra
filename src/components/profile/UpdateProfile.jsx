@@ -24,14 +24,22 @@ const UpdateProfile = () => {
       profile_image: "",
     },
   });
+
   const onUpdate = (data) => {
+    const formData = new FormData();
+
+    formData.append("_method", "PUT");
+
+    if (data.first_name) formData.append("first_name", data.first_name);
+    if (data.last_name) formData.append("last_name", data.last_name);
+    if (data.email) formData.append("email", data.email);
+
     const file = data.profile_image?.[0];
-    const updatedUserData = {
-      ...data,
-      profile_image: file ? file.name : null,
-      _method: "PUT",
-    };
-    updateProfile(updatedUserData, {
+    if (file) {
+      formData.append("profile_image", file);
+    }
+
+    updateProfile(formData, {
       onSuccess: () => {
         showToast("auth.profileUpdated", "success", t);
       },
@@ -48,7 +56,7 @@ const UpdateProfile = () => {
     }
   }, [data, reset]);
   return (
-    <div className="bg-primary m-0 mt-8 rounded-md p-10">
+    <div className="bg-primary m-0 mt-4 rounded-md p-5">
       <Text
         tagElement="h3"
         i18nKey="profile.updateProfile"
@@ -95,7 +103,7 @@ const UpdateProfile = () => {
             <FormButton
               type="reset"
               i18nKey="common.reset"
-              onClick={()=> reset()}
+              onClick={() => reset()}
               className="min-w-25 bg-transparent text-(--accent) hover:text-(--accent-hover)"
             />
           )}

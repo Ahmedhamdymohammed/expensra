@@ -11,7 +11,7 @@ import {
 import { getTrendMessage } from "../../utils";
 
 const FinancialInsights = ({ comparison, insights }) => {
-  const period = 6;
+  const period = 5;
   const { t } = useTranslation();
 
   const incomeMessage = getTrendMessage({
@@ -62,7 +62,7 @@ const FinancialInsights = ({ comparison, insights }) => {
           <FinancialInsightsItem type="warning" icon={<FaStar />}>
             {t("analysis.highestExpenseCategory", {
               category: t(`categories.${insights.highestExpenseCategory}`),
-              period: ` ${period} ${t("dates.months")}`,
+              period: ` ${period + 1} ${t("dates.months")}`,
             })}
           </FinancialInsightsItem>
           <FinancialInsightsItem type="tips" icon={<VscLightbulbSparkle />}>

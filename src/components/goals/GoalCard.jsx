@@ -9,7 +9,7 @@ const GoalCard = ({ amount, title, children }) => {
       </span>
       <span className="flex flex-col px-3">
         <Text i18nKey={`transactions.${title}`} className="text-secondary" />
-        <span className="font-semibold">{formatPrice(amount)}</span>
+        <span className="font-semibold">{formatPrice(amount || 0)}</span>
       </span>
     </div>
   );

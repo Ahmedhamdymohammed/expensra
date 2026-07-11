@@ -7,11 +7,11 @@ const PreferredCurrency = () => {
   );
 
   return (
-    <div className="bg-primary mt-8 rounded-md p-10">
+    <div className="bg-primary mt-4 rounded-md p-5">
       <Text
         tagElement="h3"
         i18nKey="profile.preferences"
-        className="text-accent mb-5 text-2xl font-semibold"
+        className="text-accent mb-3 text-2xl font-semibold"
       />
 
         <SelectInput

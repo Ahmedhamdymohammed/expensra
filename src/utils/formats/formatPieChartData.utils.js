@@ -35,7 +35,7 @@ export const formatPieChartData = (
     : LIGHT_COLORS;
 
   return data?.map((item, index) => {
-    const key = `categories.${item.categoryName.toLowerCase()}`;
+    const key = `categories.${item.categoryName}`;
 
     return {
       ...item,

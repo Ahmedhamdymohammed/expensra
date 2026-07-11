@@ -8,7 +8,6 @@ import { transformTableRowData } from "../../../utils";
 import { BudgetRow } from "../../budget";
 import { GoalsRow } from "../../goals";
 import { TransactionRow } from "../../transactions";
-import { TableRow } from "../index";
 import { TransactionActions } from "./index";
 
 const TransactionsTableRow = ({ data, variant }) => {
@@ -47,9 +46,9 @@ const TransactionsTableRow = ({ data, variant }) => {
         }
 
         return (
-          <TableRow key={index} item={rowData}>
+          <TransactionRow key={index} item={rowData}>
             <TransactionActions id={item.id} onDelete={deleteTransaction} />
-          </TableRow>
+          </TransactionRow>
         );
       })}
     </>

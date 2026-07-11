@@ -9,7 +9,7 @@ import { useModal } from "../../../context";
 import { useSearchParams } from "react-router-dom";
 
 const TransactionActions = ({ variant, id, onDelete }) => {
-  const [, setSearchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
   const { t } = useTranslation();
   const { openModal } = useModal();
 
@@ -19,16 +19,16 @@ const TransactionActions = ({ variant, id, onDelete }) => {
       openModal("addGoals");
     } else if (variant === "budget") {
       setSearchParams({ budgetId: id });
-    } else {
-      setSearchParams({ transactionId: id });
-      openModal("addTransaction");
-    }
-    if (variant != "goals") {
       const el = document.querySelector(".main");
       el?.scrollTo({
         top: 0,
         behavior: "smooth",
       });
+    } else {
+      const params = new URLSearchParams(searchParams);
+      params.set("transactionId", id);
+      setSearchParams(params);
+      openModal("addTransaction");
     }
   };
 

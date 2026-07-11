@@ -31,6 +31,16 @@ export const useMonthlySummary = () => {
 
   const prevBalance = prevIncomes - prevExpenses;
 
+  const incomeChange =
+    prevIncomes === 0
+      ? 0
+      : Math.round(((totalIncomes - prevIncomes) / prevIncomes) * 100);
+
+  const expenseChange =
+    prevExpenses === 0
+      ? 0
+      : Math.round(((totalExpenses - prevExpenses) / prevExpenses) * 100);
+
   const balanceChange =
     prevBalance === 0
       ? 0
@@ -39,11 +49,16 @@ export const useMonthlySummary = () => {
   return {
     data: currentData,
     month,
+    
     totalIncomes,
     totalExpenses,
     totalBalance,
     prevBalance,
+
+    incomeChange,
+    expenseChange,
     balanceChange,
+
     isPending: loadingCurrent || loadingPrev,
   };
 };

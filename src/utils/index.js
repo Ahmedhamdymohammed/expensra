@@ -15,6 +15,7 @@ export { getEmptyMessage } from "./normalization/getEmptyMessage.utils";
 export { getColor } from "./progressColors/progressColors.utils";
 export { getTrendMessage } from "./analysis/getTrendMessage.utils";
 export { formatGoalPayload } from "./goals/formatGoalPayload.utils";
+export { checkBudgetWarning } from "./budgets/budgets.utils";
 export { showToast } from "./notifications/Toast";
 export { TRANSACTION_FORM_DEFAULTS } from "./constants/formDefaults.constants";
 export { CURRENCIES } from "./constants/currencies.constants";

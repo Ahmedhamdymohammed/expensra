@@ -31,7 +31,7 @@ const Heading = () => {
         >
           <Text
             i18nKey={`dates.${monthLabels[selectedMonth]}`}
-            className="text-accent"
+            className="text-accent px-1 font-semibold"
           />
         </Text>
         <DateRangeToggle />

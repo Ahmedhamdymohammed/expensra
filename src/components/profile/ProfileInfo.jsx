@@ -8,8 +8,8 @@ const ProfileInfo = () => {
   const { first_name, last_name, email, profile_image } = data || {};
 
   return (
-    <div className="card m-0 border-0 py-10">
-      <div className="flex-center flex-col gap-10 text-center md:flex-row md:justify-between md:text-start">
+    <div className="card m-0 border-0 py-5">
+      <div className="flex-center flex-col gap-5 text-center md:flex-row md:justify-between md:text-start">
         <Avatar image={profile_image} className="h-30 w-30" />
         <div className="flex-1 text-center md:text-start">
           <Text

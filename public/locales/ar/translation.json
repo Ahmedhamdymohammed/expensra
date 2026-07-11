@@ -160,6 +160,7 @@
     "totalExpenses": "إجمالي المصروفات",
     "addExpense": "إضافة مصروف",
     "addNewExpense": "إضافة مصروف جديد",
+    "addExpenseSuccess": "تمت إضافة المصروف بنجاح.",
     "editExpense": "تعديل المصروف",
     "spending": "الإنفاق",
     "spendingTrends": "اتجاهات الإنفاق",
@@ -176,6 +177,7 @@
     "monthlyIncome": "الدخل الشهري",
     "addIncome": "إضافة دخل",
     "addNewIncome": "إضافة دخل جديد",
+    "addIncomeSuccess": "تمت إضافة الدخل بنجاح.",
     "editIncome": "تعديل الدخل",
     "allIncomeRecords": "جميع سجلات الدخل",
     "incomeSources": "مصادر الدخل",
@@ -241,7 +243,8 @@
     "carryOver": "ترحيل المتبقي",
     "carryOverConfirmation": "هل أنت متأكد أنك تريد ترحيل رصيدك المتبقي إلى الشهر القادم؟",
     "carryOverSuccess": "تم ترحيل الرصيد المتبقي بنجاح.",
-    "carryOverFailed": "يمكنك ترحيل رصيدك المتبقي فقط بعد انتهاء الشهر الحالي.",
+    "balanceCarryOverFailed": "يمكنك ترحيل رصيدك المتبقي فقط عند بداية الشهر الجديد.",
+    "goalCarryOverFailed": "يمكنك ترحيل رصيدك المتبقي إلى الهدف فقط عند بداية الشهر الجديد.",
     "moneyAdded": "تم اضافه {{amount}} بنجاح",
     "goalDepositSuccess": "تم إضافة {{amount}} إلى الهدف بنجاح",
     "moneyAddFailed": "فشلت إضافة المبلغ، حاول مرة أخرى.",
@@ -319,7 +322,7 @@
     "netflix": "نتفليكس",
     "fuel": "الوقود",
     "other": "أخرى",
-    "goal deposit": "اهداف"
+    "Goal Deposit": "اهداف"
   },
   "pricing": {
     "title": "اختر خطتك",
